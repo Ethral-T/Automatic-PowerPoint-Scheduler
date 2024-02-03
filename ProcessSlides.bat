@@ -1,6 +1,6 @@
 @echo off
 setlocal enabledelayedexpansion
-title Auto Scheduler written by Taylor
+title Auto Schedule Processor
 
 :: Deletes old files from remote access locations
 echo Deleting old files from remote access locations...
@@ -13,16 +13,15 @@ cscript //nologo ConvertSlides.vbs "%cd%\Room Assignments"
 :: Rename new images in the Room Assignments folder
 echo Renaming Images...
 pushd "%cd%\Room Assignments" && (
+    set "day[1]=Monday"
+    set "day[2]=Tuesday"
+    set "day[3]=Wednesday"
+    set "day[4]=Thursday"
+    set "day[5]=Friday"
+    set "day[6]=Saturday"
+    set "day[7]=Sunday"
     for /L %%G in (1,1,7) do (
-        set "day=Extra"
-        if %%G==1 set "day=Monday"
-        if %%G==2 set "day=Tuesday"
-        if %%G==3 set "day=Wednesday"
-        if %%G==4 set "day=Thursday"
-        if %%G==5 set "day=Friday"
-        if %%G==6 set "day=Saturday"
-        if %%G==7 set "day=Sunday"
-        ren "000%%G_Slide%%G.jpg" "RA%%G_!day!.jpg"
+        ren "000%%G_Slide%%G.jpg" "RA%%G_!day[%%G]!.jpg"
     )
 popd
 ) ||(
