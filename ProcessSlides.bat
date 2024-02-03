@@ -4,7 +4,7 @@ title Auto Scheduler written by Taylor
 
 echo Deleting old files from remote access locations...
 :: Deletes old files from remote access locations
-call :DeleteTask "%cd%~\Room Assignments\"
+call :DeleteTask "%cd%\Room Assignments"
 
 :: Run the VBScript to convert PowerPoint slides to 4K JPEGs
 echo Processing PowerPoint files...
@@ -12,7 +12,7 @@ cscript //nologo ConvertSlides.vbs "%cd%\Room Assignments"
 
 :: Rename new images in the Room Assignments folder
 echo Renaming Images...
-pushd "%cd%~\Room Assignments" && (
+pushd "%cd%\Room Assignments" && (
     for /L %%G in (1,1,7) do (
         set "day=Extra"
         if %%G==1 set "day=Monday"
@@ -31,7 +31,7 @@ popd
 
 :: Copy the new images to the remote access locations
 echo Copying new images to remote access locations...
-xcopy "%cd%~\Room Assignments" "C:\Users\%username%\Desktop\Room Assignments\" /I /Y
+xcopy "%cd%\Room Assignments" "C:\Users\%username%\Desktop\Room Assignments\" /I /Y
 
 :: Copy USB Contents to backup location
 echo Copying USB contents to backup location...
