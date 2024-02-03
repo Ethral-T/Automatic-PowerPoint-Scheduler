@@ -2,8 +2,8 @@
 setlocal enabledelayedexpansion
 title Auto Scheduler written by Taylor
 
-echo Deleting old files from remote access locations...
 :: Deletes old files from remote access locations
+echo Deleting old files from remote access locations...
 call :DeleteTask "%cd%\Room Assignments"
 
 :: Run the VBScript to convert PowerPoint slides to 4K JPEGs
@@ -43,6 +43,7 @@ taskkill /f /im powerpnt.exe
 
 endlocal
 
+:: Define a subroutine to delete files from a directory that can be called upon later
 :DeleteTask
 set "folder=%~1"
 pushd "%folder%" && (
